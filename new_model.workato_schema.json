@@ -1,0 +1,170 @@
+{
+  "name": "New model",
+  "schema": [
+    {
+      "properties": [
+        {
+          "properties": [
+            {
+              "control_type": "text",
+              "label": "ID",
+              "type": "string",
+              "name": "ID"
+            },
+            {
+              "control_type": "text",
+              "label": "Correlation ID",
+              "type": "string",
+              "name": "CorrelationId"
+            },
+            {
+              "control_type": "text",
+              "label": "Originating application name",
+              "type": "string",
+              "name": "OriginatingApplicationName"
+            },
+            {
+              "control_type": "text",
+              "label": "Originating hostname",
+              "type": "string",
+              "name": "OriginatingHostname"
+            },
+            {
+              "control_type": "text",
+              "label": "Create timestamp",
+              "render_input": "date_time_conversion",
+              "parse_output": "date_time_conversion",
+              "type": "date_time",
+              "name": "CreateTimestamp"
+            },
+            {
+              "control_type": "text",
+              "label": "Message type name",
+              "type": "string",
+              "name": "MessageTypeName"
+            },
+            {
+              "control_type": "text",
+              "label": "Message type version",
+              "type": "string",
+              "name": "MessageTypeVersion"
+            },
+            {
+              "control_type": "text",
+              "label": "Message body format",
+              "type": "string",
+              "name": "MessageBodyFormat"
+            },
+            {
+              "control_type": "number",
+              "label": "Priority",
+              "parse_output": "float_conversion",
+              "type": "number",
+              "name": "Priority"
+            }
+          ],
+          "label": "Message header",
+          "type": "object",
+          "name": "MessageHeader"
+        },
+        {
+          "properties": [
+            {
+              "control_type": "text",
+              "label": "Fulfillment region",
+              "type": "string",
+              "name": "FulfillmentRegion"
+            },
+            {
+              "control_type": "text",
+              "label": "Ortp",
+              "type": "string",
+              "name": "ortp"
+            },
+            {
+              "properties": [
+                {
+                  "name": "OrderLine",
+                  "type": "array",
+                  "of": "object",
+                  "label": "Order line",
+                  "properties": [
+                    {
+                      "control_type": "text",
+                      "label": "Itno",
+                      "type": "string",
+                      "name": "itno"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Orqt",
+                      "type": "string",
+                      "name": "orqt"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Cupo",
+                      "type": "string",
+                      "name": "cupo"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Sapr",
+                      "type": "string",
+                      "name": "sapr"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Dia 6",
+                      "type": "string",
+                      "name": "dia6"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Nlam",
+                      "type": "string",
+                      "name": "nlam"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Dip 6",
+                      "type": "string",
+                      "name": "dip6"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Dic 6",
+                      "type": "string",
+                      "name": "dic6"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Address yref",
+                      "type": "string",
+                      "name": "addressYref"
+                    },
+                    {
+                      "control_type": "text",
+                      "label": "Revenue percentage",
+                      "type": "string",
+                      "name": "revenuePercentage"
+                    }
+                  ]
+                }
+              ],
+              "label": "Order lines",
+              "type": "object",
+              "name": "OrderLines"
+            }
+          ],
+          "label": "Customer order",
+          "type": "object",
+          "name": "CustomerOrder"
+        }
+      ],
+      "label": "Create customer order",
+      "type": "object",
+      "name": "CreateCustomerOrder"
+    }
+  ]
+}

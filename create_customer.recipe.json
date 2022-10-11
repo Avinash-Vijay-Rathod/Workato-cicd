@@ -1,0 +1,161 @@
+{
+  "name": "create customer",
+  "description": "When there is a trigger event, do action",
+  "version": 3,
+  "private": false,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "google_drive",
+    "name": "new_file_or_folder",
+    "as": "a9070f96",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "folderId": {
+        "ids": [
+          "0ACGG1Fjf1jztUk9PVA"
+        ],
+        "titles": [
+          "My Drive"
+        ]
+      }
+    },
+    "toggleCfg": {
+      "folderId": true
+    },
+    "input": {
+      "folderId": "0ACGG1Fjf1jztUk9PVA"
+    },
+    "block": [
+      {
+        "number": 1,
+        "provider": "csv_parser",
+        "name": "parse_csv",
+        "as": "123aa35c",
+        "title": null,
+        "description": null,
+        "keyword": "action",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "col_sep": ",",
+          "skip_first_line": "true",
+          "column_value_by": "index",
+          "csv_content": "#{_('data.google_drive.a9070f96.fileContent')}",
+          "header_line": "Business vat ID, First name, Last name, Company, Email"
+        },
+        "extended_output_schema": [
+          {
+            "type": "array",
+            "name": "lines",
+            "label": "Lines",
+            "of": "object",
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Business vat ID",
+                "type": "string",
+                "name": "column_0"
+              },
+              {
+                "control_type": "text",
+                "label": " First name",
+                "type": "string",
+                "name": "column_1"
+              },
+              {
+                "control_type": "text",
+                "label": " Last name",
+                "type": "string",
+                "name": "column_2"
+              },
+              {
+                "control_type": "text",
+                "label": " Company",
+                "type": "string",
+                "name": "column_3"
+              },
+              {
+                "control_type": "text",
+                "label": " Email",
+                "type": "string",
+                "name": "column_4"
+              }
+            ]
+          }
+        ],
+        "uuid": "c968abfa-f9b0-4f15-abb3-6d258698c40c"
+      },
+      {
+        "number": 2,
+        "as": "8b4539c0",
+        "keyword": "foreach",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "repeat_mode": "simple",
+        "clear_scope": "false",
+        "input": {
+        },
+        "block": [
+          {
+            "number": 3,
+            "provider": "stripe",
+            "name": "create_customer",
+            "as": "8a36248c",
+            "keyword": "action",
+            "dynamicPickListSelection": {
+            },
+            "toggleCfg": {
+            },
+            "input": {
+              "description": "#{_('data.foreach.8b4539c0.column_1')}#{_('data.foreach.8b4539c0.column_2')}#{_('data.foreach.8b4539c0.column_3')}",
+              "business_vat_id": "#{_('data.foreach.8b4539c0.column_0')}",
+              "email": "#{_('data.foreach.8b4539c0.column_4')}"
+            },
+            "visible_config_fields": [
+              "description",
+              "email",
+              "business_vat_id"
+            ],
+            "uuid": "47e6c93c-e900-44c1-b74e-28b516aee46a"
+          }
+        ],
+        "source": "#{_('data.csv_parser.123aa35c.lines')}",
+        "uuid": "98b48944-693e-4599-90e1-87caedf5cbcc"
+      }
+    ],
+    "uuid": "d917a638-e50a-4d60-8a17-1c8cb475c33d"
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "google_drive",
+      "account_id": {
+        "zip_name": "my_google_drive_account.connection.json",
+        "name": "My Google Drive account",
+        "folder": ""
+      },
+      "skip_validation": false
+    },
+    {
+      "keyword": "application",
+      "provider": "csv_parser",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "stripe",
+      "account_id": {
+        "zip_name": "my_stripe_account.connection.json",
+        "name": "My Stripe account",
+        "folder": ""
+      },
+      "skip_validation": false
+    }
+  ]
+}

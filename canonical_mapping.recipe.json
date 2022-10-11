@@ -1,0 +1,993 @@
+{
+  "name": "canonical mapping",
+  "description": "When there is a trigger event, do action",
+  "version": 25,
+  "private": false,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "google_drive",
+    "name": "new_file_or_folder",
+    "as": "d8f25974",
+    "title": null,
+    "description": null,
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "folderId": {
+        "ids": [
+          "0ACGG1Fjf1jztUk9PVA",
+          "1kJMIlOHqgOi-dd8DJUZbo-jEZe_i0jye"
+        ],
+        "titles": [
+          "My Drive",
+          "WorkatoDemo"
+        ]
+      }
+    },
+    "toggleCfg": {
+      "folderId": true
+    },
+    "input": {
+      "folderId": "1kJMIlOHqgOi-dd8DJUZbo-jEZe_i0jye",
+      "since": "2022-03-29T00:00:00-07:00"
+    },
+    "block": [
+      {
+        "number": 1,
+        "provider": "xml_parser",
+        "name": "parse_xml",
+        "as": "38a91a2d",
+        "title": null,
+        "description": null,
+        "keyword": "action",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "type": "xml",
+          "sample_document": "<?xml version='1.0' encoding='UTF-8'?>\n<CustomerOrderCreateRequest>\n  <MessageHeader>\n    <ID>c1f22e5c-4fe8-4950-a806-79e029de7d06</ID>\n    <CorrelationId>c1f22e5c-4fe8-4950-a806-79e029de7d06</CorrelationId>\n    <OriginatingApplicationName>datatrans-prc</OriginatingApplicationName>\n    <OriginatingHostname>86527-tibbw01.otterbox.ne</OriginatingHostname>\n    <CreateTimestamp>2021-04-08T10:50:35.222-06:00</CreateTimestamp>\n    <MessageTypeName>EDIOrderRequest</MessageTypeName>\n    <MessageTypeVersion>string</MessageTypeVersion>\n    <MessageBodyFormat>text/json</MessageBodyFormat>\n    <ReturnAddressText>string</ReturnAddressText>\n    <MessageGrouping>\n      <MessageGroupId>123</MessageGroupId>\n      <MessageGroupName>TestName</MessageGroupName>\n      <MessageCount>1</MessageCount>\n      <MessagePositionNumber>3423</MessagePositionNumber>\n    </MessageGrouping>\n    <Priority>7</Priority>\n  </MessageHeader>\n  <CustomerOrder>\n    <FulfillmentRegion>NA-FULFILLMENT</FulfillmentRegion>\n    <CustomerInteractionChannelOrderNumber>8058526333</CustomerInteractionChannelOrderNumber>\n    <CustomerInteractionChannelName>EDI</CustomerInteractionChannelName>\n    <OrderedDate>2021-02-25T00:00:00</OrderedDate>\n    <ShippingMethodOfPayment>DAP</ShippingMethodOfPayment>\n    <OrderNotes>NO PRETICKET</OrderNotes>\n    <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n    <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n    <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n    <CurrencyCode>USD</CurrencyCode>\n    <OrderRevenueAmount>3791.52</OrderRevenueAmount>\n    <OrderTotalAmount>3791.52</OrderTotalAmount>\n    <OrderTypeName>Buy</OrderTypeName>\n    <OrderStatusName>Unknown</OrderStatusName>\n    <BillToCustomerAccount>\n      <ID>10004020</ID>\n      <IsKeyAccount>true</IsKeyAccount>\n    </BillToCustomerAccount>\n    <BillToCustomerLocation/>\n    <Terms>\n      <PaymentTerms>\n        <TermsNetDays>60</TermsNetDays>\n      </PaymentTerms>\n      <DiscountTerms>\n        <CashDiscountPercentage>1</CashDiscountPercentage>\n      </DiscountTerms>\n    </Terms>\n    <OrderedPriceAdjustments>\n      <OrderedPriceAdjustment>\n        <NetRevenueAmount>2</NetRevenueAmount>\n        <AmountPerUnit>2</AmountPerUnit>\n        <ChargeTypeCode>I410</ChargeTypeCode>\n      </OrderedPriceAdjustment>\n      <OrderedPriceAdjustment>\n        <NetRevenueAmount>2</NetRevenueAmount>\n        <AmountPerUnit>2</AmountPerUnit>\n        <ChargeTypeCode>I570</ChargeTypeCode>\n      </OrderedPriceAdjustment>\n    </OrderedPriceAdjustments>\n    <CustomerOrderLines>\n      <CustomerOrderLine>\n        <OrderLineNumber>1</OrderLineNumber>\n        <Product>\n          <ProductId>77-60585</ProductId>\n          <UPC>660543480150</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269289</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>29616</NetRevenueAmount>\n            <AmountPerUnit>1234</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>2</OrderLineNumber>\n        <Product>\n          <ProductId>77-59496</ProductId>\n          <UPC>660543468950</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269306</ReferenceNumber>\n        <ProductUnitPriceAmount>23.45</ProductUnitPriceAmount>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>562.80</NetRevenue>\n        <TotalAmount>562.80</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>3</OrderLineNumber>\n        <Product>\n          <ProductId>77-60597</ProductId>\n          <UPC>660543480273</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269323</ReferenceNumber>\n        <ProductUnitPriceAmount>23.45</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <Percentage>2</Percentage>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>562.80</NetRevenue>\n        <TotalAmount>562.80</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>4</OrderLineNumber>\n        <Product>\n          <ProductId>77-59793</ProductId>\n          <UPC>660543470939</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269340</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>13632</NetRevenueAmount>\n            <AmountPerUnit>568</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>5</OrderLineNumber>\n        <Product>\n          <ProductId>77-59790</ProductId>\n          <UPC>660543470908</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269356</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>109512</NetRevenueAmount>\n            <AmountPerUnit>4563</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>6</OrderLineNumber>\n        <Product>\n          <ProductId>77-61620</ProductId>\n          <UPC>660543495130</UPC>\n          <Description>SAM DEFPRO G S10E PR</Description>\n        </Product>\n        <ReferenceNumber>1162269371</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>210960</NetRevenueAmount>\n            <AmountPerUnit>8790</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n    </CustomerOrderLines>\n    <Shipments>\n      <Shipment>\n        <ShipmentId>0078742080604</ShipmentId>\n        <ShipToCustomerAccount>\n          <ID>10004020</ID>\n          <IsKeyAccount>true</IsKeyAccount>\n        </ShipToCustomerAccount>\n        <ShipToCustomerLocation>\n          <PartyLocationIDCode>0078742080604</PartyLocationIDCode>\n        </ShipToCustomerLocation>\n      </Shipment>\n    </Shipments>\n  </CustomerOrder>\n</CustomerOrderCreateRequest>",
+          "document": "<?xml version='1.0' encoding='UTF-8'?>\n<CustomerOrderCreateRequest>\n  <MessageHeader>\n    <ID>c1f22e5c-4fe8-4950-a806-79e029de7d06</ID>\n    <CorrelationId>c1f22e5c-4fe8-4950-a806-79e029de7d06</CorrelationId>\n    <OriginatingApplicationName>datatrans-prc</OriginatingApplicationName>\n    <OriginatingHostname>86527-tibbw01.otterbox.ne</OriginatingHostname>\n    <CreateTimestamp>2021-04-08T10:50:35.222-06:00</CreateTimestamp>\n    <MessageTypeName>EDIOrderRequest</MessageTypeName>\n    <MessageTypeVersion>string</MessageTypeVersion>\n    <MessageBodyFormat>text/json</MessageBodyFormat>\n    <ReturnAddressText>string</ReturnAddressText>\n    <MessageGrouping>\n      <MessageGroupId>123</MessageGroupId>\n      <MessageGroupName>TestName</MessageGroupName>\n      <MessageCount>1</MessageCount>\n      <MessagePositionNumber>3423</MessagePositionNumber>\n    </MessageGrouping>\n    <Priority>7</Priority>\n  </MessageHeader>\n  <CustomerOrder>\n    <FulfillmentRegion>NA-FULFILLMENT</FulfillmentRegion>\n    <CustomerInteractionChannelOrderNumber>8058526333</CustomerInteractionChannelOrderNumber>\n    <CustomerInteractionChannelName>EDI</CustomerInteractionChannelName>\n    <OrderedDate>2021-02-25T00:00:00</OrderedDate>\n    <ShippingMethodOfPayment>DAP</ShippingMethodOfPayment>\n    <OrderNotes>NO PRETICKET</OrderNotes>\n    <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n    <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n    <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n    <CurrencyCode>USD</CurrencyCode>\n    <OrderRevenueAmount>3791.52</OrderRevenueAmount>\n    <OrderTotalAmount>3791.52</OrderTotalAmount>\n    <OrderTypeName>Buy</OrderTypeName>\n    <OrderStatusName>Unknown</OrderStatusName>\n    <BillToCustomerAccount>\n      <ID>10004020</ID>\n      <IsKeyAccount>true</IsKeyAccount>\n    </BillToCustomerAccount>\n    <BillToCustomerLocation/>\n    <Terms>\n      <PaymentTerms>\n        <TermsNetDays>60</TermsNetDays>\n      </PaymentTerms>\n      <DiscountTerms>\n        <CashDiscountPercentage>1</CashDiscountPercentage>\n      </DiscountTerms>\n    </Terms>\n    <OrderedPriceAdjustments>\n      <OrderedPriceAdjustment>\n        <NetRevenueAmount>2</NetRevenueAmount>\n        <AmountPerUnit>2</AmountPerUnit>\n        <ChargeTypeCode>I410</ChargeTypeCode>\n      </OrderedPriceAdjustment>\n      <OrderedPriceAdjustment>\n        <NetRevenueAmount>2</NetRevenueAmount>\n        <AmountPerUnit>2</AmountPerUnit>\n        <ChargeTypeCode>I570</ChargeTypeCode>\n      </OrderedPriceAdjustment>\n    </OrderedPriceAdjustments>\n    <CustomerOrderLines>\n      <CustomerOrderLine>\n        <OrderLineNumber>1</OrderLineNumber>\n        <Product>\n          <ProductId>77-60585</ProductId>\n          <UPC>660543480150</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269289</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>29616</NetRevenueAmount>\n            <AmountPerUnit>1234</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>2</OrderLineNumber>\n        <Product>\n          <ProductId>77-59496</ProductId>\n          <UPC>660543468950</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269306</ReferenceNumber>\n        <ProductUnitPriceAmount>23.45</ProductUnitPriceAmount>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>562.80</NetRevenue>\n        <TotalAmount>562.80</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>3</OrderLineNumber>\n        <Product>\n          <ProductId>77-60597</ProductId>\n          <UPC>660543480273</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269323</ReferenceNumber>\n        <ProductUnitPriceAmount>23.45</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <Percentage>2</Percentage>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>562.80</NetRevenue>\n        <TotalAmount>562.80</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>4</OrderLineNumber>\n        <Product>\n          <ProductId>77-59793</ProductId>\n          <UPC>660543470939</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269340</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>13632</NetRevenueAmount>\n            <AmountPerUnit>568</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>5</OrderLineNumber>\n        <Product>\n          <ProductId>77-59790</ProductId>\n          <UPC>660543470908</UPC>\n          <Description>OTTERBOX DEFENDER PR</Description>\n        </Product>\n        <ReferenceNumber>1162269356</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>109512</NetRevenueAmount>\n            <AmountPerUnit>4563</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n      <CustomerOrderLine>\n        <OrderLineNumber>6</OrderLineNumber>\n        <Product>\n          <ProductId>77-61620</ProductId>\n          <UPC>660543495130</UPC>\n          <Description>SAM DEFPRO G S10E PR</Description>\n        </Product>\n        <ReferenceNumber>1162269371</ReferenceNumber>\n        <ProductUnitPriceAmount>27.77</ProductUnitPriceAmount>\n        <OrderedPriceAdjustments>\n          <OrderedPriceAdjustment>\n            <NetRevenueAmount>210960</NetRevenueAmount>\n            <AmountPerUnit>8790</AmountPerUnit>\n          </OrderedPriceAdjustment>\n        </OrderedPriceAdjustments>\n        <ProductQuantity>24</ProductQuantity>\n        <ProductQuantityUOM>EACH</ProductQuantityUOM>\n        <NetRevenue>666.48</NetRevenue>\n        <TotalAmount>666.48</TotalAmount>\n        <ShipmentID>0078742080604</ShipmentID>\n        <RequestedDeliveryDate>2021-03-11</RequestedDeliveryDate>\n        <RequestedDeliveryNotBeforeDate>2021-03-02</RequestedDeliveryNotBeforeDate>\n        <RequestedDeliveryNotAfterDate>2021-03-11</RequestedDeliveryNotAfterDate>\n        <OrderLineTypeName>Product</OrderLineTypeName>\n      </CustomerOrderLine>\n    </CustomerOrderLines>\n    <Shipments>\n      <Shipment>\n        <ShipmentId>0078742080604</ShipmentId>\n        <ShipToCustomerAccount>\n          <ID>10004020</ID>\n          <IsKeyAccount>true</IsKeyAccount>\n        </ShipToCustomerAccount>\n        <ShipToCustomerLocation>\n          <PartyLocationIDCode>0078742080604</PartyLocationIDCode>\n        </ShipToCustomerLocation>\n      </Shipment>\n    </Shipments>\n  </CustomerOrder>\n</CustomerOrderCreateRequest>"
+        },
+        "extended_output_schema": [
+          {
+            "type": "object",
+            "name": "CustomerOrderCreateRequest",
+            "label": "Customer order create request",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "ID",
+                    "type": "string",
+                    "name": "ID"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Correlation ID",
+                    "type": "string",
+                    "name": "CorrelationId"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Originating application name",
+                    "type": "string",
+                    "name": "OriginatingApplicationName"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Originating hostname",
+                    "type": "string",
+                    "name": "OriginatingHostname"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Create timestamp",
+                    "render_input": "date_time_conversion",
+                    "parse_output": "date_time_conversion",
+                    "type": "date_time",
+                    "name": "CreateTimestamp"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Message type name",
+                    "type": "string",
+                    "name": "MessageTypeName"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Message type version",
+                    "type": "string",
+                    "name": "MessageTypeVersion"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Message body format",
+                    "type": "string",
+                    "name": "MessageBodyFormat"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Return address text",
+                    "type": "string",
+                    "name": "ReturnAddressText"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Message group ID",
+                        "type": "string",
+                        "name": "MessageGroupId"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message group name",
+                        "type": "string",
+                        "name": "MessageGroupName"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message count",
+                        "type": "string",
+                        "name": "MessageCount"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message position number",
+                        "type": "string",
+                        "name": "MessagePositionNumber"
+                      }
+                    ],
+                    "label": "Message grouping",
+                    "type": "object",
+                    "name": "MessageGrouping"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Priority",
+                    "type": "string",
+                    "name": "Priority"
+                  }
+                ],
+                "label": "Message header",
+                "type": "object",
+                "name": "MessageHeader"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Fulfillment region",
+                    "type": "string",
+                    "name": "FulfillmentRegion"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Customer interaction channel order number",
+                    "type": "string",
+                    "name": "CustomerInteractionChannelOrderNumber"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Customer interaction channel name",
+                    "type": "string",
+                    "name": "CustomerInteractionChannelName"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Ordered date",
+                    "render_input": "date_time_conversion",
+                    "parse_output": "date_time_conversion",
+                    "type": "date_time",
+                    "name": "OrderedDate"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Shipping method of payment",
+                    "type": "string",
+                    "name": "ShippingMethodOfPayment"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Order notes",
+                    "type": "string",
+                    "name": "OrderNotes"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Requested delivery date",
+                    "type": "string",
+                    "name": "RequestedDeliveryDate"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Requested delivery not before date",
+                    "type": "string",
+                    "name": "RequestedDeliveryNotBeforeDate"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Requested delivery not after date",
+                    "type": "string",
+                    "name": "RequestedDeliveryNotAfterDate"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Currency code",
+                    "type": "string",
+                    "name": "CurrencyCode"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Order revenue amount",
+                    "type": "string",
+                    "name": "OrderRevenueAmount"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Order total amount",
+                    "type": "string",
+                    "name": "OrderTotalAmount"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Order type name",
+                    "type": "string",
+                    "name": "OrderTypeName"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Order status name",
+                    "type": "string",
+                    "name": "OrderStatusName"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "ID",
+                        "type": "string",
+                        "name": "ID"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Is key account",
+                        "type": "string",
+                        "name": "IsKeyAccount"
+                      }
+                    ],
+                    "label": "Bill to customer account",
+                    "type": "object",
+                    "name": "BillToCustomerAccount"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Bill to customer location",
+                    "type": "string",
+                    "name": "BillToCustomerLocation"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Terms net days",
+                            "type": "string",
+                            "name": "TermsNetDays"
+                          }
+                        ],
+                        "label": "Payment terms",
+                        "type": "object",
+                        "name": "PaymentTerms"
+                      },
+                      {
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Cash discount percentage",
+                            "type": "string",
+                            "name": "CashDiscountPercentage"
+                          }
+                        ],
+                        "label": "Discount terms",
+                        "type": "object",
+                        "name": "DiscountTerms"
+                      }
+                    ],
+                    "label": "Terms",
+                    "type": "object",
+                    "name": "Terms"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "name": "OrderedPriceAdjustment",
+                        "type": "array",
+                        "of": "object",
+                        "label": "Ordered price adjustment",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Net revenue amount",
+                            "type": "string",
+                            "name": "NetRevenueAmount"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Amount per unit",
+                            "type": "string",
+                            "name": "AmountPerUnit"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Charge type code",
+                            "type": "string",
+                            "name": "ChargeTypeCode"
+                          }
+                        ],
+                        "parse_output": "item_array_wrap"
+                      }
+                    ],
+                    "label": "Ordered price adjustments",
+                    "type": "object",
+                    "name": "OrderedPriceAdjustments"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "name": "CustomerOrderLine",
+                        "type": "array",
+                        "of": "object",
+                        "label": "Customer order line",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Order line number",
+                            "type": "string",
+                            "name": "OrderLineNumber"
+                          },
+                          {
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Product ID",
+                                "type": "string",
+                                "name": "ProductId"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "UPC",
+                                "type": "string",
+                                "name": "UPC"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Description",
+                                "type": "string",
+                                "name": "Description"
+                              }
+                            ],
+                            "label": "Product",
+                            "type": "object",
+                            "name": "Product"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Reference number",
+                            "type": "string",
+                            "name": "ReferenceNumber"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Product unit price amount",
+                            "type": "string",
+                            "name": "ProductUnitPriceAmount"
+                          },
+                          {
+                            "properties": [
+                              {
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "Net revenue amount",
+                                    "type": "string",
+                                    "name": "NetRevenueAmount"
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Amount per unit",
+                                    "type": "string",
+                                    "name": "AmountPerUnit"
+                                  }
+                                ],
+                                "label": "Ordered price adjustment",
+                                "type": "object",
+                                "name": "OrderedPriceAdjustment"
+                              }
+                            ],
+                            "label": "Ordered price adjustments",
+                            "type": "object",
+                            "name": "OrderedPriceAdjustments"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Product quantity",
+                            "type": "string",
+                            "name": "ProductQuantity"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Product quantity UOM",
+                            "type": "string",
+                            "name": "ProductQuantityUOM"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Net revenue",
+                            "type": "string",
+                            "name": "NetRevenue"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Total amount",
+                            "type": "string",
+                            "name": "TotalAmount"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Shipment ID",
+                            "type": "string",
+                            "name": "ShipmentID"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Requested delivery date",
+                            "type": "string",
+                            "name": "RequestedDeliveryDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Requested delivery not before date",
+                            "type": "string",
+                            "name": "RequestedDeliveryNotBeforeDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Requested delivery not after date",
+                            "type": "string",
+                            "name": "RequestedDeliveryNotAfterDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Order line type name",
+                            "type": "string",
+                            "name": "OrderLineTypeName"
+                          }
+                        ],
+                        "parse_output": "item_array_wrap"
+                      }
+                    ],
+                    "label": "Customer order lines",
+                    "type": "object",
+                    "name": "CustomerOrderLines"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Shipment ID",
+                            "type": "string",
+                            "name": "ShipmentId"
+                          },
+                          {
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "ID",
+                                "type": "string",
+                                "name": "ID"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Is key account",
+                                "type": "string",
+                                "name": "IsKeyAccount"
+                              }
+                            ],
+                            "label": "Ship to customer account",
+                            "type": "object",
+                            "name": "ShipToCustomerAccount"
+                          },
+                          {
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Party location ID code",
+                                "type": "string",
+                                "name": "PartyLocationIDCode"
+                              }
+                            ],
+                            "label": "Ship to customer location",
+                            "type": "object",
+                            "name": "ShipToCustomerLocation"
+                          }
+                        ],
+                        "label": "Shipment",
+                        "type": "object",
+                        "name": "Shipment"
+                      }
+                    ],
+                    "label": "Shipments",
+                    "type": "object",
+                    "name": "Shipments"
+                  }
+                ],
+                "label": "Customer order",
+                "type": "object",
+                "name": "CustomerOrder"
+              }
+            ]
+          }
+        ],
+        "uuid": "c61f829b-4456-4ced-8ea1-d37af665475f"
+      },
+      {
+        "number": 2,
+        "provider": "workato_mapper",
+        "name": "map",
+        "as": "c03ce65a",
+        "title": null,
+        "description": "<span class=\"provider\">Map</span> to <span class=\"provider\"><span class=\"provider\">New model</span></span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "workato_schema_id": "New model"
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "workato_schema_id": {
+            "zip_name": "new_model.workato_schema.json",
+            "name": "New model",
+            "folder": ""
+          },
+          "data": {
+            "CreateCustomerOrder": {
+              "MessageHeader": {
+                "ID": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.ID')}",
+                "CorrelationId": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.CorrelationId')}",
+                "OriginatingApplicationName": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.OriginatingApplicationName')}",
+                "OriginatingHostname": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.OriginatingHostname')}",
+                "CreateTimestamp": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.CreateTimestamp')}",
+                "MessageTypeName": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.MessageTypeName')}",
+                "MessageTypeVersion": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.MessageTypeVersion')}",
+                "MessageBodyFormat": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.MessageBodyFormat')}",
+                "Priority": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.MessageHeader.Priority')}"
+              },
+              "CustomerOrder": {
+                "FulfillmentRegion": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.FulfillmentRegion')}",
+                "ortp": "=_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.OrderTypeName') == \"Warranty Replacement\" ? 104 : _('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.OrderTypeName') == \"Claim\" ? 115 : _('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.OrderTypeName') == \"Return\" ? 188 : _('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.OrderTypeName') == \"Buy\" and _('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerInteractionChannelName') == \"EDI\" ? 112 : 105",
+                "OrderLines": {
+                  "OrderLine": {
+                    "____source": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine')}",
+                    "itno": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine.first.Product.ProductId')}",
+                    "orqt": "=_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine.first.ProductQuantity').present? ? _('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine.first.ProductQuantity') : 0",
+                    "cupo": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine.first.OrderLineNumber')}",
+                    "sapr": "#{_('data.xml_parser.38a91a2d.CustomerOrderCreateRequest.CustomerOrder.CustomerOrderLines.CustomerOrderLine.first.ProductUnitPriceAmount')}",
+                    "dia6": "=[1,2,3].sum",
+                    "nlam": "\"\"",
+                    "dip6": "\"\"",
+                    "dic6": "\"\"",
+                    "addressYref": "\"\"",
+                    "revenuePercentage": "\"\""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "type": "object",
+            "name": "data",
+            "label": "New model",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "ID",
+                        "type": "string",
+                        "name": "ID"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Correlation ID",
+                        "type": "string",
+                        "name": "CorrelationId"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Originating application name",
+                        "type": "string",
+                        "name": "OriginatingApplicationName"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Originating hostname",
+                        "type": "string",
+                        "name": "OriginatingHostname"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Create timestamp",
+                        "render_input": "date_time_conversion",
+                        "parse_output": "date_time_conversion",
+                        "type": "date_time",
+                        "name": "CreateTimestamp"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message type name",
+                        "type": "string",
+                        "name": "MessageTypeName"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message type version",
+                        "type": "string",
+                        "name": "MessageTypeVersion"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message body format",
+                        "type": "string",
+                        "name": "MessageBodyFormat"
+                      },
+                      {
+                        "control_type": "number",
+                        "label": "Priority",
+                        "parse_output": "float_conversion",
+                        "type": "number",
+                        "name": "Priority"
+                      }
+                    ],
+                    "label": "Message header",
+                    "type": "object",
+                    "name": "MessageHeader"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Fulfillment region",
+                        "type": "string",
+                        "name": "FulfillmentRegion"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Ortp",
+                        "type": "string",
+                        "name": "ortp"
+                      },
+                      {
+                        "properties": [
+                          {
+                            "name": "OrderLine",
+                            "type": "array",
+                            "of": "object",
+                            "label": "Order line",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Itno",
+                                "type": "string",
+                                "name": "itno"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Orqt",
+                                "type": "string",
+                                "name": "orqt"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Cupo",
+                                "type": "string",
+                                "name": "cupo"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Sapr",
+                                "type": "string",
+                                "name": "sapr"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dia 6",
+                                "type": "string",
+                                "name": "dia6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Nlam",
+                                "type": "string",
+                                "name": "nlam"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dip 6",
+                                "type": "string",
+                                "name": "dip6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dic 6",
+                                "type": "string",
+                                "name": "dic6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Address yref",
+                                "type": "string",
+                                "name": "addressYref"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Revenue percentage",
+                                "type": "string",
+                                "name": "revenuePercentage"
+                              }
+                            ]
+                          }
+                        ],
+                        "label": "Order lines",
+                        "type": "object",
+                        "name": "OrderLines"
+                      }
+                    ],
+                    "label": "Customer order",
+                    "type": "object",
+                    "name": "CustomerOrder"
+                  }
+                ],
+                "label": "Create customer order",
+                "type": "object",
+                "name": "CreateCustomerOrder"
+              }
+            ]
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "type": "object",
+            "name": "data",
+            "label": "New model",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "ID",
+                        "type": "string",
+                        "name": "ID"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Correlation ID",
+                        "type": "string",
+                        "name": "CorrelationId"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Originating application name",
+                        "type": "string",
+                        "name": "OriginatingApplicationName"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Originating hostname",
+                        "type": "string",
+                        "name": "OriginatingHostname"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Create timestamp",
+                        "render_input": "date_time_conversion",
+                        "parse_output": "date_time_conversion",
+                        "type": "date_time",
+                        "name": "CreateTimestamp"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message type name",
+                        "type": "string",
+                        "name": "MessageTypeName"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message type version",
+                        "type": "string",
+                        "name": "MessageTypeVersion"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Message body format",
+                        "type": "string",
+                        "name": "MessageBodyFormat"
+                      },
+                      {
+                        "control_type": "number",
+                        "label": "Priority",
+                        "parse_output": "float_conversion",
+                        "type": "number",
+                        "name": "Priority"
+                      }
+                    ],
+                    "label": "Message header",
+                    "type": "object",
+                    "name": "MessageHeader"
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Fulfillment region",
+                        "type": "string",
+                        "name": "FulfillmentRegion"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Ortp",
+                        "type": "string",
+                        "name": "ortp"
+                      },
+                      {
+                        "properties": [
+                          {
+                            "name": "OrderLine",
+                            "type": "array",
+                            "of": "object",
+                            "label": "Order line",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Itno",
+                                "type": "string",
+                                "name": "itno"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Orqt",
+                                "type": "string",
+                                "name": "orqt"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Cupo",
+                                "type": "string",
+                                "name": "cupo"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Sapr",
+                                "type": "string",
+                                "name": "sapr"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dia 6",
+                                "type": "string",
+                                "name": "dia6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Nlam",
+                                "type": "string",
+                                "name": "nlam"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dip 6",
+                                "type": "string",
+                                "name": "dip6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Dic 6",
+                                "type": "string",
+                                "name": "dic6"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Address yref",
+                                "type": "string",
+                                "name": "addressYref"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Revenue percentage",
+                                "type": "string",
+                                "name": "revenuePercentage"
+                              }
+                            ]
+                          }
+                        ],
+                        "label": "Order lines",
+                        "type": "object",
+                        "name": "OrderLines"
+                      }
+                    ],
+                    "label": "Customer order",
+                    "type": "object",
+                    "name": "CustomerOrder"
+                  }
+                ],
+                "label": "Create customer order",
+                "type": "object",
+                "name": "CreateCustomerOrder"
+              }
+            ]
+          }
+        ],
+        "uuid": "dfef5730-7fde-4d2c-89a2-e2ff3b7377f4"
+      },
+      {
+        "number": 3,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "a9c06519",
+        "title": null,
+        "description": null,
+        "keyword": "action",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "message": "#{_('data.google_drive.d8f25974.name')}"
+        },
+        "uuid": "4ee00e18-f510-45fa-854f-3f827b6b6a0e"
+      }
+    ],
+    "uuid": "80338efd-8c0e-494f-a71e-3e6e6af45ba7"
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "google_drive",
+      "account_id": {
+        "zip_name": "my_google_drive_account.connection.json",
+        "name": "My Google Drive account",
+        "folder": ""
+      },
+      "skip_validation": false
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "xml_parser",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_mapper",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

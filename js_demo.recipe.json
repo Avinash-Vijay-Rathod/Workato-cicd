@@ -1,0 +1,253 @@
+{
+  "name": "js-demo",
+  "description": "When there is a trigger event, do action",
+  "version": 51,
+  "private": false,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "workato_webhooks",
+    "name": "new_event",
+    "as": "f7fbcf20",
+    "title": null,
+    "description": "<span class=\"provider\">Create-account</span> via <span class=\"provider\">HTTP webhook</span>",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+    },
+    "toggleCfg": {
+    },
+    "input": {
+      "request": {
+        "webhook_type": "json",
+        "payload_schema": "[{\"control_type\":\"text\",\"label\":\"Payload\",\"name\":\"payload\",\"type\":\"string\",\"optional\":false}]",
+        "headers_schema": "[{\"control_type\":\"text\",\"label\":\"ID\",\"type\":\"string\",\"name\":\"ID\"},{\"control_type\":\"text\",\"label\":\"Correlation ID\",\"type\":\"string\",\"name\":\"CorrelationId\"}]"
+      },
+      "webhook_suffix": "create-account"
+    },
+    "extended_output_schema": [
+      {
+        "type": "object",
+        "name": "headers",
+        "label": "Headers",
+        "properties": [
+          {
+            "control_type": "text",
+            "label": "ID",
+            "type": "string",
+            "name": "id"
+          },
+          {
+            "control_type": "text",
+            "label": "Correlation ID",
+            "type": "string",
+            "name": "correlationid"
+          }
+        ]
+      },
+      {
+        "type": "object",
+        "name": "payload",
+        "label": "Payload",
+        "properties": [
+          {
+            "control_type": "text",
+            "label": "Payload",
+            "name": "payload",
+            "type": "string",
+            "optional": false
+          }
+        ]
+      }
+    ],
+    "extended_input_schema": [
+      {
+        "type": "object",
+        "name": "request",
+        "label": "Payload configuration",
+        "properties": [
+          {
+            "control_type": "select",
+            "label": "Webhook type",
+            "pick_list": [
+              [
+                "GET request",
+                "get"
+              ],
+              [
+                "PUT/POST with JSON payload",
+                "json"
+              ],
+              [
+                "PUT/POST with XML payload",
+                "xml"
+              ],
+              [
+                "PUT/POST with FORM encoded payload",
+                "form"
+              ],
+              [
+                "PUT/POST with raw binary data",
+                "rawdata"
+              ],
+              [
+                "PUT/POST with unicode text data",
+                "rawdatatxt"
+              ]
+            ],
+            "hint": "Select the HTTP method and payload data type used by webhook. <a href=\"https://support.workato.com/support/solutions/articles/1000241356-http-real-time-webhook-type\" target=\"_blank\">Learn more</a>",
+            "default": "json",
+            "extends_schema": true,
+            "type": "string",
+            "name": "webhook_type"
+          },
+          {
+            "control_type": "schema-designer",
+            "label": "Payload schema",
+            "sample_data_type": "json_http",
+            "extends_schema": true,
+            "empty_schema_title": "Describe all fields in your response.",
+            "optional": true,
+            "sticky": true,
+            "type": "string",
+            "name": "payload_schema"
+          },
+          {
+            "control_type": "schema-designer",
+            "label": "Headers",
+            "extends_schema": true,
+            "empty_schema_title": "Describe all the webhook headers",
+            "optional": true,
+            "sticky": true,
+            "type": "string",
+            "name": "headers_schema"
+          }
+        ],
+        "override": true
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "js_eval",
+        "name": "invoke_custom_js_code",
+        "as": "0a2d0f6c",
+        "title": null,
+        "description": "Execute <span class=\"provider\">JavaScript</span> code: <span class=\"provider\">Transform Customer Data</span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "code": "exports.main = async ({input_payload}) => {\n  let result;\n  if (input_payload.Addresses[0].custom_attributes !== undefined && input_payload.Addresses[0].custom_attributes[0].attribute_code == \"sap_customer_id\") {\n  result = input_payload.Addresses[0].custom_attributes[0].value;\n} else {\n  result = input_payload.ID\n}\n  const output = result;\n return  {output} ;\n}",
+          "name": "Transform Customer Data",
+          "code_input": {
+            "schema": "[{\"name\":\"input_payload\",\"type\":\"string\",\"optional\":true,\"label\":\"input_payload\",\"control_type\":\"text\"}]",
+            "data": {
+              "input_payload": "={\n  \"ID\": 100003584,\n  \"Group_ID\": 1,\n  \"Email\": \"soms032503ch@gmail.com\",\n  \"First_name\": \"som\",\n  \"Last_name\": \"sek\",\n  \"Addresses\": [\n    {\n      \"id\": 1729557,\n      \"customer_id\": 100003584,\n      \"region\": {\n        \"region_code\": \"CA\",\n        \"region\": \"California\",\n        \"region_id\": 12\n      },\n      \"region_id\": 12,\n      \"country_id\": \"US\",\n      \"street\": [\n        \"85 mount tiburon road\"\n      ],\n      \"telephone\": \"432-333-2332\",\n      \"postcode\": \"94920\",\n      \"city\": \"tiburon\",\n      \"firstname\": \"som\",\n      \"lastname\": \"sek\"\n    }\n\t\n  ]\n}"
+            }
+          },
+          "code_output_schema_json": "[{\"name\":\"output\",\"type\":\"string\",\"optional\":false,\"control_type\":\"text\"}]"
+        },
+        "extended_output_schema": [
+          {
+            "type": "object",
+            "name": "output",
+            "label": "Output",
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Output",
+                "name": "output",
+                "type": "string",
+                "optional": false
+              }
+            ]
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "type": "object",
+            "name": "code_input",
+            "control_type": "form-schema-builder",
+            "label": "Input fields",
+            "hint": "Define the input fields that will be passed to your JavaScript code",
+            "sticky": true,
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "label": "Data",
+                "type": "object",
+                "name": "data",
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "input_payload",
+                    "name": "input_payload",
+                    "type": "string",
+                    "optional": true
+                  }
+                ]
+              }
+            ],
+            "override": true
+          }
+        ],
+        "visible_config_fields": [
+          "name",
+          "code_input",
+          "code_output_schema_json",
+          "code",
+          "code_input.data.vehicle_name",
+          "code_input.schema",
+          "code_input.data.input_payload"
+        ],
+        "uuid": "313a507f-0b0d-41b5-a863-a6241114a3ce"
+      },
+      {
+        "number": 2,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "848768eb",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+        },
+        "toggleCfg": {
+        },
+        "input": {
+          "message": "#{_('data.js_eval.0a2d0f6c.output.output')}"
+        },
+        "uuid": "163c6ef1-c05b-47f9-9e93-2cc42ea818a2"
+      }
+    ],
+    "uuid": "e4f6896b-bc8c-49c9-b5e1-0e1ca9c79384",
+    "wizardFinished": true
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "js_eval",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_webhooks",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}
